@@ -22,12 +22,32 @@ coverage
 # Compiled binary addons (http://nodejs.org/api/addons.html)
 build/Release
 
-# Dependency directory
+# Node Environment
 # https://www.npmjs.org/doc/misc/npm-faq.html#should-i-check-my-node_modules-folder-into-git
-node_modules
+node_modules/
+bower_components/
 
 ./test
 resized/
 
 # Ignore actual batchUpload.sh
 batchUpload.sh
+
+# Python Environment
+env/
+env-*/
+*.pyc
+
+# Deploy Environment
+.env
+db.sqlite3
+local_settings.py
+.ansible/
+
+# Testing Logs
+*driver.log
+
+# OS/Editor Files
+*.sublime-workspace
+.DS_Store
+Thumbs.db
