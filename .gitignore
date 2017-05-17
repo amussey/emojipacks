@@ -37,6 +37,7 @@ batchUpload.sh
 env/
 env-*/
 *.pyc
+__pycache__/
 
 # Deploy Environment
 .env
