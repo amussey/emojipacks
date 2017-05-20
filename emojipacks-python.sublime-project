@@ -1,0 +1,21 @@
+{
+    "folders":
+    [
+        {
+            "name": "emojipacks (Python)",
+            "path": ".",
+            "folder_exclude_patterns": [
+                "env",
+                "__pycache__"
+            ],
+            "file_exclude_patterns": [
+                "*.sqlite3"
+            ]
+        }
+    ],
+    "settings": {
+        "tab_size": 4,
+        "translate_tabs_to_spaces": true
+    },
+    "build_systems": []
+}

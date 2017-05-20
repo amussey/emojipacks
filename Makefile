@@ -1,4 +1,4 @@
-SHELL := /bin/bash
+# SHELL := /bin/bash
 MAKEFILE_RULES := $(shell cat Makefile | grep "^[A-Za-z]" | awk '{print $$1}' | sed "s/://g" | sort -u)
 PYTHON_ENV := ./env
 PYTHON_BIN := $(PYTHON_ENV)/bin
@@ -12,12 +12,16 @@ PYTHON3 := $(shell command -v python3 2> /dev/null)
 PIP := $(shell command -v pip 2> /dev/null)
 CHROMEDRIVER := $(shell command -v chromedriver 2> /dev/null)
 PHANTOMJS := $(shell command -v phantomjs 2> /dev/null)
+YAML_CONFIG := env.yml
 
 .DEFAULT_GOAL := help
 
 
 default: help
 
+
+$(YAML_CONFIG):
+	touch $(YAML_CONFIG)
 
 env: virtualenv
 
@@ -68,6 +72,17 @@ node_modules:  ## Install node modules with npm.
 node_modules: npm package.json
 	@npm install
 	@touch node_modules
+
+#=======================================
+# Runners
+#=======================================
+
+run: virtualenv
+	$(PYTHON_BIN)/ipython3 emojipacks.py
+
+shell: virtualenv
+	$(PYTHON_BIN)/ipython3
+
 
 #
 # Phonies.
