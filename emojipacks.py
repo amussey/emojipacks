@@ -3,13 +3,10 @@
 import click
 import os
 from splinter import Browser
-# import ipdb
-# from time import sleep
 
-import emojipacks2
+import emojipacks
 
 
-ACCEPTED_IMAGES = ['gif', 'jpg', 'png']
 PACK_PROMPT = 'Path or URL of Emoji YAML file'
 
 URLS = {
@@ -27,18 +24,25 @@ URLS = {
 @click.option('-x', '--emoji-dir', help='A directory with emoji images.', type=(str))
 @click.option('-y', '--pack', help='YAML emoji pack', type=(str))
 @click.option('-s', '--save', help='Save the credentials to a temp file.', default=True, type=(bool))
-def emojipacks(debug, subdomain, email, password, emoji_dir, pack, save):
+def runner(debug, subdomain, email, password, emoji_dir, pack, save):
     if emoji_dir is None and pack is None:
         pack = click.prompt(PACK_PROMPT)
-    # print(debug, subdomain, email, password, pack)
+
+    emoji_yaml = emojipacks.load_emojipack_yml(pack)
 
     browser = Browser('chrome')
-    emojipacks2.login(browser, subdomain, email, password)
+    emojipacks.login(browser, subdomain, email, password)
 
-    emojipacks2.load_current_emojis(browser, subdomain)
+    emojis = emojipacks.load_current_emojis(browser, subdomain)
+
+    # import ipdb ; ipdb.set_trace()
+
+    emojipacks.install_emojipack(browser, subdomain, emojis, emoji_yaml)
 
     browser.quit()
 
+    click.secho('All emojis installed!', fg='green', bold=True)
+
 
 if __name__ == '__main__':
-    emojipacks()
+    runner()
