@@ -131,7 +131,7 @@ This script will essentially log into your Slack and then submit a `POST` reques
 
 *Still having issues? Create an issue [here](https://github.com/amussey/emojipacks-python/issues/new).*
 
-*Enjoyed this project?  Serious props for the initial legwork from it's creator.  Check out his [blog](http://blog.andyjiang.com) for more*.
+*Enjoyed this project?  Serious props for the initial legwork from its creator.  Check out his [blog](http://blog.andyjiang.com) for more*.
 
 ## License (MIT)
 
