@@ -6,7 +6,9 @@
             "path": ".",
             "folder_exclude_patterns": [
                 "env",
-                "__pycache__"
+                "__pycache__",
+                ".cache",
+                "node_modules"
             ],
             "file_exclude_patterns": [
                 "*.sqlite3"

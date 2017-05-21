@@ -38,9 +38,11 @@ env/
 env-*/
 *.pyc
 __pycache__/
+.cache/
 
 # Deploy Environment
 .env
+env.yml
 db.sqlite3
 local_settings.py
 .ansible/

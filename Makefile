@@ -3,16 +3,18 @@ MAKEFILE_RULES := $(shell cat Makefile | grep "^[A-Za-z]" | awk '{print $$1}' | 
 PYTHON_ENV := ./env
 PYTHON_BIN := $(PYTHON_ENV)/bin
 PYTHON_REQS := ./requirements.txt
+YAML_CONFIG := env.yml
 
 # Required binaries
 BOWER := $(shell command -v bower 2> /dev/null)
+GRUNT := $(shell command -v grunt 2> /dev/null)
 NPM := $(shell command -v npm 2> /dev/null)
 PYTHON27 := $(shell command -v python2.7 2> /dev/null)
 PYTHON3 := $(shell command -v python3 2> /dev/null)
 PIP := $(shell command -v pip 2> /dev/null)
 CHROMEDRIVER := $(shell command -v chromedriver 2> /dev/null)
 PHANTOMJS := $(shell command -v phantomjs 2> /dev/null)
-YAML_CONFIG := env.yml
+
 
 .DEFAULT_GOAL := help
 
@@ -22,6 +24,12 @@ default: help
 
 $(YAML_CONFIG):
 	touch $(YAML_CONFIG)
+
+
+
+#=======================================
+# External dependencies
+#=======================================
 
 env: virtualenv
 
@@ -44,29 +52,16 @@ ifndef PIP
 	$(error "I require pip but it's not installed. Aborting.")
 endif
 
-
-#=======================================
-# External dependencies
-#=======================================
-
-
 npm:  ## Check if NPM is installed
 ifndef NPM
 	$(error "npm does not appear to be installed.  Please install Node.JS and NPM and try again.")
 endif
 
-# Install Emojipacks on your machine.
-install: npm node_modules
-	@npm link
-	@echo
-	@echo "\x1B[97m  emojipacks \x1B[90m·\x1B[39m Successfully installed Emojipack!"
-	@echo "\x1B[97m             \x1B[90m·\x1B[39m Run \`emojipacks\` to get started."
-	@echo
-
-
-#=======================================
-# External dependencies
-#=======================================
+grunt:  ## Check if grunt is installed
+grunt: npm
+ifndef GRUNT
+	npm install -g grunt-cli
+endif
 
 node_modules:  ## Install node modules with npm.
 node_modules: npm package.json
@@ -84,15 +79,20 @@ shell: virtualenv
 	$(PYTHON_BIN)/ipython3
 
 
-#
-# Phonies.
-#
+#=======================================
+# Linters
+#=======================================
 
-.PHONY: npm
-.PHONY: clean
-.PHONY: debug
-.PHONY: run
-.PHONY: server
+yaml-lint:  ## Lint and validate the YAML files.
+yaml-lint: grunt
+	grunt default
+
+py-lint:  ## Lint and validate the Python files.
+py-lint: virtualenv
+	$(PYTHON_BIN)/flake8 emojipacks.py emojipacks/*.py test/*.py
+
+lint:  ## Lint and validate the YAML and Python files.
+lint: yaml-lint py-lint
 
 
 #=======================================

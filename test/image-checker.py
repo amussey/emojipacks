@@ -88,8 +88,7 @@ def check_aliases(aliases, emoji_names, errors):
         if error:
             errors.append(error)
         if alias in emoji_names:
-            errors.append("Error: Alias {} is already defined elsewhere"
-                    .format(alias))
+            errors.append("Error: Alias {} is already defined elsewhere".format(alias))
         emoji_names.add(alias)
 
 
@@ -116,8 +115,7 @@ def check_yaml(yaml_filename, resize=False):
             errors.append(error)
 
         if emoji["name"] in emoji_names:
-            errors.append("Error: Emoji named {} already defined elsewhere."
-                    .format(emoji["name"]))
+            errors.append("Error: Emoji named {} already defined elsewhere.".format(emoji["name"]))
         emoji_names.add(emoji["name"])
 
         if "aliases" in emoji:
