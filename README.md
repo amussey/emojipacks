@@ -1,31 +1,22 @@
 # emojipacks
 
-[![Build Status](https://travis-ci.org/lambtron/emojipacks.svg?branch=master)](https://travis-ci.org/lambtron/emojipacks)
+_Forked and heavily based on [lambtron's emojipack Node.JS library](https://github.com/lambtron/emojipacks)._
 
 > CLI to bulk upload emojis to your Slack!
 
-## Install
-
-*Note you must have `node` and `npm` installed. If you don't, go to [nodejs.org](https://www.nodejs.org) and follow the install instructions there.*
+## Usage
 
 ```bash
-$ npm install -g emojipacks
+$ make run
 ```
 
 or
 
 ```bash
-$ git clone git@github.com:lambtron/emojipacks.git
-$ cd emojipacks
-$ make
-```
-
-## Usage
-
-There is only one command:
-
-```bash
-$ emojipacks
+$ virtualenv -p python3 env
+$ source env/bin/activate
+$ pip install -r requirements.txt
+$ ./emojipacks.py
 ```
 
 It'll ask you a few questions:
@@ -37,22 +28,7 @@ Password: *********
 Path or URL of Emoji yaml file: ./packs/futurama.yaml
 ```
 
-Then, let it work its magic:
-
-```bash
-Starting import
-Got tokens
-Logged in
-Upload crumb is s-1437797544-90b75206a7-☃
-Getting emoji page
-Uploading bender with http://i.imgur.com/7zYM751.png
-Uploading amywong with http://i.imgur.com/DgKkcCi.png
- .
- .
- .
-Uploading hypnotoad with http://i.imgur.com/o7tyjxN.gif
-Uploaded emojis
-```
+Then, let it work its magic!
 
 Note that the emoji pack to upload can be a **path** to a yaml file on your machine or a **URL**, like [http://www.emojipacks.com/packs/food.yaml](http://www.emojipacks.com/packs/food.yaml).
 
@@ -61,7 +37,7 @@ Note that the emoji pack to upload can be a **path** to a yaml file on your mach
 This will allow for easier batch uploading of multiple yaml files
 
 ```bash
-$ emojipacks -s <subdomain> -e <email> -p <password> -y <yaml_file>
+$ ./emojipacks.py -s <subdomain> -e <email> -p <password> -y <yaml_file>
 ```
 
 ## Run Batch Upload script
@@ -153,9 +129,9 @@ This script will essentially log into your Slack and then submit a `POST` reques
 - **you disabled two-factor authentication**: again, having two-factor enabled will prevent the script from getting to the necessary emoji upload form
 - **your credentials are correct**: if you have done all of the following correctly try running the command **emojipacks -d**
 
-*Still having issues? Create an issue [here](https://github.com/lambtron/emojipacks/issues/new).*
+*Still having issues? Create an issue [here](https://github.com/amussey/emojipacks-python/issues/new).*
 
-*Enjoyed this project? Check out my [blog](http://blog.andyjiang.com) for more*.
+*Enjoyed this project?  Serious props for the initial legwork from it's creator.  Check out his [blog](http://blog.andyjiang.com) for more*.
 
 ## License (MIT)
 

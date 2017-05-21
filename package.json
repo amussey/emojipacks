@@ -22,16 +22,14 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://www.github.com/lambtron/emojipacks"
+    "url": "https://www.github.com/amussey/emojipacks-python"
   },
   "engines": {
     "node": ">= 0.11.x",
     "npm": ">= 2.5.x"
   },
   "preferGlobal": "true",
-  "bin": {
-    "emojipacks": "./bin/emojipacks"
-  },
+  "bin": {},
   "dependencies": {
     "chalk": "^1.1.0",
     "cheerio": "^0.19.0",
